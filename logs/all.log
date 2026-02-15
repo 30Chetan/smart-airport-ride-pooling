@@ -1683,3 +1683,124 @@
 2026-02-15 22:55:36:5536 [32minfo[39m: [32mPrisma Client Connected[39m
 2026-02-15 22:55:36:5536 [32minfo[39m: [32mServer running on port 3000[39m
 2026-02-15 22:55:36:5536 [32minfo[39m: [32mDocumentation available at http://localhost:3000/docs[39m
+2026-02-16 01:43:32:4332 [32minfo[39m: [32mRedis Client Connected[39m
+2026-02-16 01:43:32:4332 [32minfo[39m: [32mPrisma Client Connected[39m
+2026-02-16 01:43:32:4332 [32minfo[39m: [32mServer running on port 3000[39m
+2026-02-16 01:43:32:4332 [32minfo[39m: [32mDocumentation available at http://localhost:3000/docs[39m
+2026-02-16 01:44:38:4438 [35mhttp[39m: [35mGET /docs/[39m
+2026-02-16 01:44:39:4439 [35mhttp[39m: [35mGET /docs/swagger-ui.css[39m
+2026-02-16 01:44:39:4439 [35mhttp[39m: [35mGET /docs/swagger-ui-bundle.js[39m
+2026-02-16 01:44:39:4439 [35mhttp[39m: [35mGET /docs/swagger-ui-init.js[39m
+2026-02-16 01:44:39:4439 [35mhttp[39m: [35mGET /docs/swagger-ui-standalone-preset.js[39m
+2026-02-16 01:48:38:4838 [35mhttp[39m: [35mPOST /passengers[39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mQuery: SELECT "public"."Passenger"."id", "public"."Passenger"."name", "public"."Passenger"."phone", "public"."Passenger"."createdAt" FROM "public"."Passenger" WHERE ("public"."Passenger"."phone" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mParams: ["7777777777",1,0][39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mDuration: 4ms[39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mQuery: INSERT INTO "public"."Passenger" ("id","name","phone","createdAt") VALUES ($1,$2,$3,$4) RETURNING "public"."Passenger"."id", "public"."Passenger"."name", "public"."Passenger"."phone", "public"."Passenger"."createdAt"[39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mParams: ["3f61b599-97f8-4eb9-a70c-25738eaaae08","Lifecycle Test","7777777777","2026-02-15 20:18:38.677 UTC"][39m
+2026-02-16 01:48:38:4838 [37mdebug[39m: [37mDuration: 14ms[39m
+2026-02-16 01:50:05:505 [35mhttp[39m: [35mPOST /cabs[39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mQuery: SELECT 1[39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mDuration: 6ms[39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mQuery: INSERT INTO "public"."Cab" ("id","driverName","totalSeats","availableSeats","luggageCapacity","availableLuggageCapacity","status","version","createdAt") VALUES ($1,$2,$3,$4,$5,$6,CAST($7::text AS "public"."CabStatus"),$8,$9) RETURNING "public"."Cab"."id", "public"."Cab"."driverName", "public"."Cab"."totalSeats", "public"."Cab"."availableSeats", "public"."Cab"."luggageCapacity", "public"."Cab"."availableLuggageCapacity", "public"."Cab"."status"::text, "public"."Cab"."version", "public"."Cab"."createdAt"[39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mParams: ["f91c62fa-6225-4295-b2f9-7065976daeaf","Driver Cancel Test",2,2,3,3,"AVAILABLE",1,"2026-02-15 20:20:05.525 UTC"][39m
+2026-02-16 01:50:05:505 [37mdebug[39m: [37mDuration: 14ms[39m
+2026-02-16 01:51:20:5120 [35mhttp[39m: [35mPOST /ride-requests[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: SELECT 1[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 4ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: SELECT "public"."Passenger"."id", "public"."Passenger"."name", "public"."Passenger"."phone", "public"."Passenger"."createdAt" FROM "public"."Passenger" WHERE ("public"."Passenger"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: ["3f61b599-97f8-4eb9-a70c-25738eaaae08",1,0][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: BEGIN[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: INSERT INTO "public"."RideRequest" ("id","passengerId","pickupLat","pickupLng","dropLat","dropLng","luggageCount","detourTolerance","status","createdAt") VALUES ($1,$2,$3,$4,$5,$6,$7,$8,CAST($9::text AS "public"."RideStatus"),$10) RETURNING "public"."RideRequest"."id"[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: ["a8793bdd-d2fc-4005-b048-e7738ff78ff4","3f61b599-97f8-4eb9-a70c-25738eaaae08",28.6139,77.209,28.4595,77.0266,2,20,"PENDING","2026-02-15 20:21:20.497 UTC"][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 6ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: SELECT "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt" FROM "public"."RideRequest" WHERE "public"."RideRequest"."id" = $1 LIMIT $2 OFFSET $3[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: ["a8793bdd-d2fc-4005-b048-e7738ff78ff4",1,0][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: SELECT "public"."Passenger"."id", "public"."Passenger"."name", "public"."Passenger"."phone", "public"."Passenger"."createdAt" FROM "public"."Passenger" WHERE "public"."Passenger"."id" IN ($1) OFFSET $2[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: ["3f61b599-97f8-4eb9-a70c-25738eaaae08",0][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mQuery: COMMIT[39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:51:20:5120 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:52:13:5213 [35mhttp[39m: [35mPOST /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/assign[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: SELECT 1[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: SELECT "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt" FROM "public"."RideRequest" WHERE ("public"."RideRequest"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: ["163bffd6-7092-467b-87cd-56a608b1d0df",1,0][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: BEGIN[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: [39m
+[37m            SELECT * FROM "Cab"[39m
+[37m            WHERE status = 'AVAILABLE'[39m
+[37m            AND "availableSeats" > 0[39m
+[37m            AND "availableLuggageCapacity" >= $1[39m
+[37m            ORDER BY "createdAt" ASC[39m
+[37m            LIMIT 1[39m
+[37m            FOR UPDATE[39m
+[37m        [39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: [2][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 16ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: UPDATE "public"."Cab" SET "availableSeats" = $1, "availableLuggageCapacity" = $2, "status" = CAST($3::text AS "public"."CabStatus") WHERE ("public"."Cab"."id" = $4 AND 1=1) RETURNING "public"."Cab"."id", "public"."Cab"."driverName", "public"."Cab"."totalSeats", "public"."Cab"."availableSeats", "public"."Cab"."luggageCapacity", "public"."Cab"."availableLuggageCapacity", "public"."Cab"."status"::text, "public"."Cab"."version", "public"."Cab"."createdAt"[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: [1,1,"AVAILABLE","f91c62fa-6225-4295-b2f9-7065976daeaf"][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 4ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: INSERT INTO "public"."CabAssignment" ("id","cabId","rideRequestId","assignedAt") VALUES ($1,$2,$3,$4) RETURNING "public"."CabAssignment"."id", "public"."CabAssignment"."cabId", "public"."CabAssignment"."rideRequestId", "public"."CabAssignment"."assignedAt"[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: ["3359b4fd-361b-4a35-98a4-dfbd4da987a4","f91c62fa-6225-4295-b2f9-7065976daeaf","163bffd6-7092-467b-87cd-56a608b1d0df","2026-02-15 20:22:13.473 UTC"][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 3ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: UPDATE "public"."RideRequest" SET "status" = CAST($1::text AS "public"."RideStatus") WHERE ("public"."RideRequest"."id" = $2 AND 1=1) RETURNING "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt"[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: ["ASSIGNED","163bffd6-7092-467b-87cd-56a608b1d0df"][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mQuery: COMMIT[39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:52:13:5213 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:55:34:5534 [35mhttp[39m: [35mPOST /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/cancel[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: BEGIN[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: SELECT "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt" FROM "public"."RideRequest" WHERE ("public"."RideRequest"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: ["163bffd6-7092-467b-87cd-56a608b1d0df",1,0][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 5ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: SELECT "public"."CabAssignment"."id", "public"."CabAssignment"."cabId", "public"."CabAssignment"."rideRequestId", "public"."CabAssignment"."assignedAt" FROM "public"."CabAssignment" WHERE ("public"."CabAssignment"."rideRequestId" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: ["163bffd6-7092-467b-87cd-56a608b1d0df",1,0][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: SELECT "public"."Cab"."id", "public"."Cab"."driverName", "public"."Cab"."totalSeats", "public"."Cab"."availableSeats", "public"."Cab"."luggageCapacity", "public"."Cab"."availableLuggageCapacity", "public"."Cab"."status"::text, "public"."Cab"."version", "public"."Cab"."createdAt" FROM "public"."Cab" WHERE ("public"."Cab"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: ["f91c62fa-6225-4295-b2f9-7065976daeaf",1,0][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: UPDATE "public"."Cab" SET "availableSeats" = $1, "availableLuggageCapacity" = $2, "status" = CAST($3::text AS "public"."CabStatus") WHERE ("public"."Cab"."id" = $4 AND 1=1) RETURNING "public"."Cab"."id", "public"."Cab"."driverName", "public"."Cab"."totalSeats", "public"."Cab"."availableSeats", "public"."Cab"."luggageCapacity", "public"."Cab"."availableLuggageCapacity", "public"."Cab"."status"::text, "public"."Cab"."version", "public"."Cab"."createdAt"[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: [2,3,"AVAILABLE","f91c62fa-6225-4295-b2f9-7065976daeaf"][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: UPDATE "public"."RideRequest" SET "status" = CAST($1::text AS "public"."RideStatus") WHERE ("public"."RideRequest"."id" = $2 AND 1=1) RETURNING "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt"[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: ["CANCELLED","163bffd6-7092-467b-87cd-56a608b1d0df"][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 1ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: DELETE FROM "public"."CabAssignment" WHERE ("public"."CabAssignment"."rideRequestId" = $1 AND 1=1) RETURNING "public"."CabAssignment"."id", "public"."CabAssignment"."cabId", "public"."CabAssignment"."rideRequestId", "public"."CabAssignment"."assignedAt"[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: ["163bffd6-7092-467b-87cd-56a608b1d0df"][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mQuery: COMMIT[39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:55:34:5534 [37mdebug[39m: [37mDuration: 2ms[39m
+2026-02-16 01:57:17:5717 [35mhttp[39m: [35mPOST /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/cancel[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mQuery: SELECT 1[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mDuration: 7ms[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mQuery: BEGIN[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mQuery: SELECT "public"."RideRequest"."id", "public"."RideRequest"."passengerId", "public"."RideRequest"."pickupLat", "public"."RideRequest"."pickupLng", "public"."RideRequest"."dropLat", "public"."RideRequest"."dropLng", "public"."RideRequest"."luggageCount", "public"."RideRequest"."detourTolerance", "public"."RideRequest"."status"::text, "public"."RideRequest"."createdAt" FROM "public"."RideRequest" WHERE ("public"."RideRequest"."id" = $1 AND 1=1) LIMIT $2 OFFSET $3[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mParams: ["163bffd6-7092-467b-87cd-56a608b1d0df",1,0][39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mDuration: 4ms[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mQuery: ROLLBACK[39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mParams: [][39m
+2026-02-16 01:57:17:5717 [37mdebug[39m: [37mDuration: 0ms[39m
+2026-02-16 01:57:17:5717 [31merror[39m: [31m400 - Only assigned rides can be cancelled - /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/cancel - POST - ::1[39m
+2026-02-16 01:57:17:5717 [31merror[39m: [31mError: Only assigned rides can be cancelled[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/Desktop/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:84:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/Desktop/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m

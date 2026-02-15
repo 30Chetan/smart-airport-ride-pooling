@@ -71,4 +71,57 @@ export class CabAssignmentService {
             return assignment;
         });
     }
+
+    async cancelRideRequest(rideRequestId: string): Promise<any> {
+        return prisma.$transaction(async (tx) => {
+            // 1. Fetch RideRequest and validate
+            const rideRequest = await this.rideRequestRepository.findById(rideRequestId, tx);
+            if (!rideRequest) {
+                throw new AppError('Ride request not found', 404);
+            }
+
+            if (rideRequest.status !== RideStatus.ASSIGNED) {
+                throw new AppError('Only assigned rides can be cancelled', 400);
+            }
+
+            // 2. Fetch CabAssignment
+            const assignment = await this.cabAssignmentRepository.findByRideRequestId(rideRequestId, tx);
+            if (!assignment) {
+                throw new AppError('Cab assignment not found for this ride request', 404);
+            }
+
+            // 3. Fetch Cab
+            const cab = await this.cabRepository.findById(assignment.cabId, tx);
+            if (!cab) {
+                throw new AppError('Cab not found', 404);
+            }
+
+            // 4. Update Cab Capacity and Status
+            const newAvailableSeats = cab.availableSeats + 1;
+            const newAvailableLuggage = cab.availableLuggageCapacity + rideRequest.luggageCount;
+            const newStatus = cab.status === CabStatus.FULL ? CabStatus.AVAILABLE : cab.status;
+
+            await this.cabRepository.updateCab(
+                cab.id,
+                {
+                    availableSeats: newAvailableSeats,
+                    availableLuggageCapacity: newAvailableLuggage,
+                    status: newStatus,
+                },
+                tx
+            );
+
+            // 5. Update RideRequest Status to CANCELLED
+            await this.rideRequestRepository.updateStatus(rideRequestId, RideStatus.CANCELLED, tx);
+
+            // 6. Delete CabAssignment
+            await this.cabAssignmentRepository.deleteByRideRequestId(rideRequestId, tx);
+
+            return {
+                rideRequestId,
+                cabId: cab.id,
+                cancelledAt: new Date(),
+            };
+        });
+    }
 }

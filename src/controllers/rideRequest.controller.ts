@@ -77,4 +77,28 @@ export class RideRequestController {
             next(error);
         }
     };
+
+    cancelRideRequest = async (req: Request, res: Response, next: NextFunction) => {
+        try {
+            const { id } = req.params;
+            const uuidSchema = z.string().uuid();
+
+            const validationResult = uuidSchema.safeParse(id);
+            if (!validationResult.success) {
+                return res.status(400).json({
+                    status: 'error',
+                    message: 'Invalid ride request ID format',
+                });
+            }
+
+            const result = await this.cabAssignmentService.cancelRideRequest(id);
+
+            res.status(200).json({
+                status: 'success',
+                data: result,
+            });
+        } catch (error) {
+            next(error);
+        }
+    };
 }

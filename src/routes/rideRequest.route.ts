@@ -101,4 +101,45 @@ router.post('/', rideRequestController.createRideRequest);
  */
 router.post('/:id/assign', rideRequestController.assignCab);
 
+/**
+ * @swagger
+ * /ride-requests/{id}/cancel:
+ *   post:
+ *     summary: Cancel an assigned ride request
+ *     tags: [RideRequests]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: string
+ *           format: uuid
+ *         description: Ride Request ID
+ *     responses:
+ *       200:
+ *         description: Ride request cancelled successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 status:
+ *                   type: string
+ *                 data:
+ *                   type: object
+ *                   properties:
+ *                     rideRequestId:
+ *                       type: string
+ *                     cabId:
+ *                       type: string
+ *                     cancelledAt:
+ *                       type: string
+ *                       format: date-time
+ *       400:
+ *         description: Invalid ID or Ride Request not ASSIGNED
+ *       404:
+ *         description: Ride Request or Assignment not found
+ */
+router.post('/:id/cancel', rideRequestController.cancelRideRequest);
+
 export default router;

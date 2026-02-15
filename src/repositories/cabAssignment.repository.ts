@@ -15,4 +15,22 @@ export class CabAssignmentRepository {
             data,
         });
     }
+
+    async findByRideRequestId(
+        rideRequestId: string,
+        tx: Prisma.TransactionClient = prisma
+    ): Promise<CabAssignment | null> {
+        return tx.cabAssignment.findUnique({
+            where: { rideRequestId },
+        });
+    }
+
+    async deleteByRideRequestId(
+        rideRequestId: string,
+        tx: Prisma.TransactionClient = prisma
+    ): Promise<void> {
+        await tx.cabAssignment.delete({
+            where: { rideRequestId },
+        });
+    }
 }

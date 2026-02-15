@@ -59,4 +59,13 @@ export class CabRepository {
             data,
         });
     }
+
+    async findById(
+        id: string,
+        tx: Prisma.TransactionClient = prisma
+    ): Promise<Cab | null> {
+        return tx.cab.findUnique({
+            where: { id },
+        });
+    }
 }

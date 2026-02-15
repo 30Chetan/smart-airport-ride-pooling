@@ -115,3 +115,8 @@
 [31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:41:23)[39m
 [31m    at Generator.next (<anonymous>)[39m
 [31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-16 01:57:17:5717 [31merror[39m: [31m400 - Only assigned rides can be cancelled - /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/cancel - POST - ::1[39m
+2026-02-16 01:57:17:5717 [31merror[39m: [31mError: Only assigned rides can be cancelled[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/Desktop/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:84:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/Desktop/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
