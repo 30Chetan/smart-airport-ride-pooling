@@ -98,7 +98,27 @@ The interactive Swagger/OpenAPI documentation is available at:
 
 You can use the built-in Swagger UI to test specific endpoints or use `npx prisma studio` for a GUI view of the database state.
 
-## 11. Sample Test Data
+## 11. Project Structure
+```text
+.
+├── src/
+│   ├── config/      # Infrastructure (Prisma, Redis, Logger)
+│   ├── controllers/ # Request handlers & validation logic
+│   ├── middleware/  # Error handling & logging middlewares
+│   ├── repositories/# Direct DB queries (Encapsulated ORM)
+│   ├── services/    # Business rules & transaction logic
+│   ├── routes/      # Endpoints (Passenger, Cab, RideRequest)
+│   └── utils/       # Swagger & helper utilities
+├── prisma/          # Schema definition & migrations
+├── scripts/         # Verification and utility scripts
+├── HIGH_LEVEL_ARCHITECTURE.md
+├── LOW_LEVEL_DESIGN.md
+├── DSA_APPROACH.md
+├── PERFORMANCE_STRATEGY.md
+└── README.md
+```
+
+## 12. Sample Test Data
 
 ### Create Passenger
 ```json
