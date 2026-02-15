@@ -1,0 +1,117 @@
+2026-02-15 07:57:15:5715 [31merror[39m: [31m409 - Passenger with this phone number already exists - /passengers - POST - ::1[39m
+2026-02-15 07:57:15:5715 [31merror[39m: [31mError: Passenger with this phone number already exists[39m
+[31m    at PassengerService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:5:58)[39m
+2026-02-15 07:58:18:5818 [31merror[39m: [31m409 - Passenger with this phone number already exists - /passengers - POST - ::1[39m
+2026-02-15 07:58:18:5818 [31merror[39m: [31mError: Passenger with this phone number already exists[39m
+[31m    at PassengerService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:5:58)[39m
+2026-02-15 17:11:10:1110 [31merror[39m: [31m400 - Ride request is already ASSIGNED - /ride-requests/427d2942-890b-4ef0-8ca7-f84160609464/assign - POST - ::1[39m
+2026-02-15 17:11:10:1110 [31merror[39m: [31mError: Ride request is already ASSIGNED[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:27:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 17:14:54:1454 [31merror[39m: [31m409 - Passenger with this phone number already exists - /passengers - POST - ::1[39m
+2026-02-15 17:14:54:1454 [31merror[39m: [31mError: Passenger with this phone number already exists[39m
+[31m    at PassengerService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:5:58)[39m
+2026-02-15 17:34:45:3445 [31merror[39m: [31m404 - Passenger not found. Cannot create ride request. - /ride-requests - POST - ::1[39m
+2026-02-15 17:34:45:3445 [31merror[39m: [31mError: Passenger not found. Cannot create ride request.[39m
+[31m    at RideRequestService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/rideRequest.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/rideRequest.service.ts:5:58)[39m
+2026-02-15 17:37:41:3741 [31merror[39m: [31m500 - Internal Server Error - /ride-requests - POST - ::1[39m
+2026-02-15 17:37:41:3741 [31merror[39m: [31mSyntaxError: Expected property name or '}' in JSON at position 1 (line 1 column 2)[39m
+[31m    at JSON.parse (<anonymous>)[39m
+[31m    at parse (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/body-parser/lib/types/json.js:92:19)[39m
+[31m    at /Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/body-parser/lib/read.js:128:18[39m
+[31m    at AsyncResource.runInAsyncScope (node:async_hooks:214:14)[39m
+[31m    at invokeCallback (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/raw-body/index.js:238:16)[39m
+[31m    at done (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/raw-body/index.js:227:7)[39m
+[31m    at IncomingMessage.onEnd (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/raw-body/index.js:287:7)[39m
+[31m    at IncomingMessage.emit (node:events:518:28)[39m
+[31m    at IncomingMessage.emit (node:domain:489:12)[39m
+[31m    at endReadableNT (node:internal/streams/readable:1698:12)[39m
+2026-02-15 17:44:03:443 [31merror[39m: [31m409 - No cabs available at the moment - /ride-requests/e16d65cd-3006-47d6-8909-77f82db1fdfd/assign - POST - ::1[39m
+2026-02-15 17:44:03:443 [31merror[39m: [31mError: No cabs available at the moment[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:38:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 17:46:04:464 [31merror[39m: [31m409 - No cabs available at the moment - /ride-requests/e16d65cd-3006-47d6-8909-77f82db1fdfd/assign - POST - ::1[39m
+2026-02-15 17:46:05:465 [31merror[39m: [31mError: No cabs available at the moment[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:38:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 17:49:15:4915 [31merror[39m: [31m500 - Internal Server Error - /cabs - POST - ::1[39m
+2026-02-15 17:49:15:4915 [31merror[39m: [31mPrismaClientValidationError: [39m
+[31mInvalid `prisma.cab.create()` invocation in[39m
+[31m/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/repositories/cab.repository.ts:16:27[39m
+
+[31m  13 [39m
+[31m  14 export class CabRepository {[39m
+[31m  15     async createCab(data: CreateCabDto): Promise<Cab> {[39m
+[31m→ 16         return prisma.cab.create({[39m
+[31m               data: {[39m
+[31m                 driverName: "Luggage Driver 1771157955",[39m
+[31m                 totalSeats: 4,[39m
+[31m                 luggageCapacity: 5,[39m
+[31m                 availableSeats: 4,[39m
+[31m                 availableLuggageCapacity: 5,[39m
+[31m                 ~~~~~~~~~~~~~~~~~~~~~~~~[39m
+[31m                 status: "AVAILABLE",[39m
+[31m                 version: 1,[39m
+[31m             ?   id?: String,[39m
+[31m             ?   createdAt?: DateTime,[39m
+[31m             ?   assignments?: CabAssignmentCreateNestedManyWithoutCabInput[39m
+[31m               }[39m
+[31m             })[39m
+
+[31mUnknown argument `availableLuggageCapacity`. Available options are marked with ?.[39m
+[31m    at wn (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/@prisma/client/runtime/library.js:29:1363)[39m
+[31m    at $n.handleRequestError (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/@prisma/client/runtime/library.js:121:6958)[39m
+[31m    at $n.handleAndLogRequestError (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/@prisma/client/runtime/library.js:121:6623)[39m
+[31m    at $n.request (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/@prisma/client/runtime/library.js:121:6307)[39m
+[31m    at async l (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/node_modules/@prisma/client/runtime/library.js:130:9633)[39m
+2026-02-15 21:13:02:132 [31merror[39m: [31m409 - Not enough luggage capacity in the assigned cab - /ride-requests/c2fc84c9-e72e-4715-a59c-9027b762d80b/assign - POST - ::1[39m
+2026-02-15 21:13:02:132 [31merror[39m: [31mError: Not enough luggage capacity in the assigned cab[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:46:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 21:22:42:2242 [31merror[39m: [31m409 - Passenger with this phone number already exists - /passengers - POST - ::1[39m
+2026-02-15 21:22:42:2242 [31merror[39m: [31mError: Passenger with this phone number already exists[39m
+[31m    at PassengerService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:5:58)[39m
+2026-02-15 21:22:58:2258 [31merror[39m: [31m409 - Passenger with this phone number already exists - /passengers - POST - ::1[39m
+2026-02-15 21:22:58:2258 [31merror[39m: [31mError: Passenger with this phone number already exists[39m
+[31m    at PassengerService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:16:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/passenger.service.ts:5:58)[39m
+2026-02-15 21:36:52:3652 [31merror[39m: [31m409 - No cabs available with sufficient luggage capacity - /ride-requests/58d56ddf-3d78-4f18-83d4-37b440f98fc2/assign - POST - ::1[39m
+2026-02-15 21:36:52:3652 [31merror[39m: [31mError: No cabs available with sufficient luggage capacity[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:41:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 21:58:27:5827 [31merror[39m: [31m409 - No cabs available with sufficient luggage capacity - /ride-requests/7c4a2518-0d42-4d40-a7ca-6354a5736688/assign - POST - ::1[39m
+2026-02-15 21:58:27:5827 [31merror[39m: [31mError: No cabs available with sufficient luggage capacity[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:41:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 22:02:46:246 [31merror[39m: [31m409 - No cabs available with sufficient luggage capacity - /ride-requests/7b45faca-513d-499d-8a89-b3c2a471ed73/assign - POST - ::1[39m
+2026-02-15 22:02:46:246 [31merror[39m: [31mError: No cabs available with sufficient luggage capacity[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:41:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 22:21:55:2155 [31merror[39m: [31m400 - Ride request is already ASSIGNED - /ride-requests/6cfe43e0-ea30-45eb-8580-1c63e06146db/assign - POST - ::1[39m
+2026-02-15 22:21:55:2155 [31merror[39m: [31mError: Ride request is already ASSIGNED[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:27:19)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m
+2026-02-15 22:26:30:2630 [31merror[39m: [31m409 - No cabs available with sufficient luggage capacity - /ride-requests/163bffd6-7092-467b-87cd-56a608b1d0df/assign - POST - ::1[39m
+2026-02-15 22:26:30:2630 [31merror[39m: [31mError: No cabs available with sufficient luggage capacity[39m
+[31m    at CabAssignmentService.<anonymous> (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:41:23)[39m
+[31m    at Generator.next (<anonymous>)[39m
+[31m    at fulfilled (/Users/chetansharma302004gmail.com/smart-airport-ride-pooling_1/src/services/cabAssignment.service.ts:5:58)[39m

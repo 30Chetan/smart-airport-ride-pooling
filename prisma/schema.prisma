@@ -1,0 +1,80 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+
+
+model Passenger {
+  id           String        @id @default(uuid())
+  name         String
+  phone        String        @unique
+  createdAt    DateTime      @default(now())
+  rideRequests RideRequest[]
+}
+
+enum RideStatus {
+  PENDING
+  ASSIGNED
+  CANCELLED
+}
+
+model RideRequest {
+  id              String     @id @default(uuid())
+  passengerId     String
+  passenger       Passenger  @relation(fields: [passengerId], references: [id])
+  pickupLat       Float
+  pickupLng       Float
+  dropLat         Float
+  dropLng         Float
+  luggageCount    Int
+  detourTolerance Float
+  status          RideStatus @default(PENDING)
+  createdAt       DateTime   @default(now())
+  assignment      CabAssignment?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+enum CabStatus {
+  AVAILABLE
+  FULL
+  OFFLINE
+}
+
+model Cab {
+  id              String          @id @default(uuid())
+  driverName      String
+  totalSeats      Int
+  availableSeats           Int
+  luggageCapacity          Int
+  availableLuggageCapacity Int
+  status                   CabStatus
+  version                  Int             @default(1)
+  createdAt                DateTime        @default(now())
+  assignments              CabAssignment[]
+
+  @@index([status])
+  @@index([availableSeats])
+  @@index([availableLuggageCapacity])
+}
+
+model CabAssignment {
+  id            String      @id @default(uuid())
+  cabId         String
+  cab           Cab         @relation(fields: [cabId], references: [id])
+  rideRequestId String      @unique
+  rideRequest   RideRequest @relation(fields: [rideRequestId], references: [id])
+  assignedAt    DateTime    @default(now())
+
+  @@index([cabId])
+  @@index([rideRequestId])
+}
