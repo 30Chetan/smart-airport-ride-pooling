@@ -12,7 +12,56 @@ The application is structured using a clean Layered Architecture to decouple con
 *   **Database**: PostgreSQL serves as the primary relational store, ensuring ACID compliance for all state changes.
 *   **ORM (Prisma)**: Provides type-safe database access and schema migrations, reducing boiler-plate and error-prone SQL handling.
 
-## 3. Database Design Overview
+## 3. Database Schema
+The following diagram illustrates the relational structure of the system:
+
+```mermaid
+erDiagram
+    Passenger ||--o{ RideRequest : "requests"
+    RideRequest ||--o| CabAssignment : "assigned to"
+    Cab ||--o{ CabAssignment : "carries"
+
+    Passenger {
+        string id PK
+        string name
+        string phone
+        datetime createdAt
+    }
+
+    RideRequest {
+        string id PK
+        string passengerId FK
+        float pickupLat
+        float pickupLng
+        float dropLat
+        float dropLng
+        int luggageCount
+        float detourTolerance
+        RideStatus status
+        datetime createdAt
+    }
+
+    Cab {
+        string id PK
+        string driverName
+        int totalSeats
+        int availableSeats
+        int luggageCapacity
+        int availableLuggageCapacity
+        CabStatus status
+        int version
+        datetime createdAt
+    }
+
+    CabAssignment {
+        string id PK
+        string cabId FK
+        string rideRequestId FK
+        datetime assignedAt
+    }
+```
+
+## 4. Database Design Overview
 The schema is built around four primary entities:
 
 *   **Passenger**: Represents the user requesting the ride.
@@ -22,7 +71,7 @@ The schema is built around four primary entities:
 
 Each `RideRequest` can have at most one active `CabAssignment`, and a `Cab` can be linked to multiple `CabAssignment` records depending on its available capacity.
 
-## 4. Ride Assignment Algorithm
+## 5. Ride Assignment Algorithm
 The assignment process follows a strict transaction-protected sequence:
 
 1.  **Status Validation**: Verifies that the `RideRequest` is in `PENDING` status.
@@ -33,14 +82,14 @@ The assignment process follows a strict transaction-protected sequence:
 6.  **Atomic Update**: Inside the transaction, it decrements the cab's capacity, creates the `CabAssignment` record, and updates the `RideRequest` status to `ASSIGNED`.
 7.  **Auto-Transition**: Automatically updates the cab status to `FULL` if the `availableSeats` count reaches zero.
 
-## 5. Why Transaction + FOR UPDATE is Required
+## 6. Why Transaction + FOR UPDATE is Required
 In high-concurrency scenarios (e.g., 100 requests per second), a standard "Read then Write" approach is vulnerable to race conditions:
 
 *   **The Scenario**: Request A and Request B both read the same Cab (which has 1 seat left) at the same time. Both see it as available.
 *   **The Problem**: Both requests proceed to decrement the seat and create an assignment. The cab ends up with -1 seats, and two passengers are assigned to the same physical seat.
 *   **The Solution**: `SELECT FOR UPDATE` places a lock on the specific cab row at the moment it is read. Request B must wait until Request A's transaction is finished (committed) before it can even read that row. By the time Request B reads it, the seat count has already been decremented to 0, and the cab is correctly skipped.
 
-## 6. Ride Cancellation Flow
+## 7. Ride Cancellation Flow
 The system supports atomic restoration of resources during cancellation:
 
 1.  **Validation**: Ensures only `ASSIGNED` rides can be cancelled.
@@ -49,12 +98,12 @@ The system supports atomic restoration of resources during cancellation:
 4.  **Cleanup**: Deletes the `CabAssignment` record and sets the `RideRequest` status to `CANCELLED`.
 This entire flow is wrapped in a `prisma.$transaction` for atomicity.
 
-## 7. Time & Space Complexity
+## 8. Time & Space Complexity
 *   **Time Complexity**: Filtering for available cabs is optimized at `O(log N)` using B-tree indexes on `status`, `availableSeats`, and `availableLuggageCapacity`. Updates are `O(1)` as they target specific primary keys.
 *   **Space Complexity**: `O(1)` as the engine operates directly on database results without maintaining large in-memory structures or complex auxiliary data.
 *   **Practicality**: The pessimistic lock ensures total consistency at the cost of slight serialization for updates on the *exact same* cab row, which is rare in a large fleet.
 
-## 8. Scalability Strategy
+## 9. Scalability Strategy
 The backend is designed for horizontal scale and high throughput:
 
 *   **Stateless Services**: The API layer can be scaled across multiple Node.js instances behind a Load Balancer (e.g., Nginx or ALB).
@@ -63,7 +112,7 @@ The backend is designed for horizontal scale and high throughput:
 *   **Atomic Parallelism**: Since locks are row-level (not table-level), 100 different cabs can be assigned to 100 different passengers simultaneously with zero blocking.
 *   **Horizontal DB Expansion**: PostgreSQL can be further optimized via read-replicas for data fetching, keeping the primary instance dedicated to assignment transactions.
 
-## 9. Setup Instructions
+## 10. Setup Instructions
 
 ### Prerequisites
 *   Node.js (v18+)
@@ -92,13 +141,13 @@ The backend is designed for horizontal scale and high throughput:
     npm run dev
     ```
 
-## 10. API Documentation
+## 11. API Documentation
 The interactive Swagger/OpenAPI documentation is available at:
 `http://localhost:3000/docs`
 
 You can use the built-in Swagger UI to test specific endpoints or use `npx prisma studio` for a GUI view of the database state.
 
-## 11. Project Structure
+## 12. Project Structure
 ```text
 .
 ├── src/
@@ -118,7 +167,7 @@ You can use the built-in Swagger UI to test specific endpoints or use `npx prism
 └── README.md
 ```
 
-## 12. Sample Test Data
+## 13. Sample Test Data
 
 ### Create Passenger
 ```json
@@ -150,30 +199,30 @@ You can use the built-in Swagger UI to test specific endpoints or use `npx prism
 }
 ```
 
-## 12. End-to-End Test Flow
+## 14. End-to-End Test Flow
 1.  **Registration**: Create a Passenger and a Cab (Total Seats: 1).
 2.  **Request**: Create a Ride Request for that Passenger with 1 luggage.
 3.  **Assignment**: Call the assign endpoint. Verify the Cab status becomes `FULL`.
 4.  **Cancellation**: Call the cancel endpoint. Verify the Cab status reverts to `AVAILABLE`.
 5.  **Verification**: Use Prisma Studio to confirm `availableSeats` and `availableLuggageCapacity` are restored to original values.
 
-## 13. Assumptions
+## 15. Assumptions
 *   **Single Occupancy**: Each `RideRequest` consumes exactly one seat in the vehicle.
 *   **FIFO Prioritization**: Drivers are assigned work based on who has been on the platform longer (Fairness Model).
 *   **Static Routing**: Distances and detours are currently based on input coordinates without real-time traffic integration.
 
-## 14. Limitations
+## 16. Limitations
 *   **No Batched Clustering**: The assignment engine processes requests sequentially; it does not currently wait to "batch" multiple passengers for the same route before assigning.
 *   **No Dynamic Pricing**: Fare calculation is not included in the current scope.
 *   **Standard GPS**: Basic coordinate-based logic is used; advanced geospatial clustering (PostGIS) is not active.
 
-## 15. Future Improvements
+## 17. Future Improvements
 *   **Geospatial Clustering**: Integration of PostGIS for efficient proximity-based assignment.
 *   **Dynamic Route Optimization**: Using OSRM or Google Maps for real-time `detourTolerance` validation.
 *   **Dynamic Pricing Engine**: Calculating fares based on distance, demand, and shared occupancy.
 *   **Automated Load Testing**: Implementation of K6 or Locust scripts for high-load simulation.
 
-## 16. Performance Considerations
+## 18. Performance Considerations
 *   **B-Tree Indexing**: Ensures that as the number of cabs increases, assignment lookups remain fast.
 *   **Small Transaction Scope**: Transactions are kept minimal to reduce row-level lock hold time, maximizing throughput.
 *   **Node.js Event Loop**: The non-blocking I/O of Node.js ensures high concurrent handling for read-heavy operations.
